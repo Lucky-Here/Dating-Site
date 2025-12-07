@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Chat — Campus Connect</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="logo">Campus Connect</div>
+    <div class="nav-right">
+      <a href="profile.html" class="btn link">Profile</a>
+    </div>
+  </nav>
+
+  <main class="center-page">
+    <div class="chat-card">
+      <div class="messages" id="messages">
+        <div class="msg other">Hey — how's campus?</div>
+        <div class="msg you">Pretty good! You?</div>
+      </div>
+      <div class="chat-input">
+        <input id="msgInput" placeholder="Write a message..." />
+        <button id="sendBtn" class="btn primary">Send</button>
+      </div>
+    </div>
+  </main>
+
+  <footer><p>© 2025 Campus Connect</p></footer>
+
+  <script src="firebase.js"></script>
+  <script>
+    document.getElementById('sendBtn').addEventListener('click', () => {
+      const v = document.getElementById('msgInput').value.trim();
+      if (!v) return;
+      const m = document.createElement('div');
+      m.className = 'msg you';
+      m.textContent = v;
+      document.getElementById('messages').appendChild(m);
+      document.getElementById('msgInput').value = '';
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Browse — Campus Connect</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="logo">Campus Connect</div>
+    <div class="nav-right">
+      <a href="profile.html" class="btn link">Profile</a>
+    </div>
+  </nav>
+
+  <main class="center-page">
+    <div class="swipe-area">
+      <div id="card" class="profile-card swipe-card">
+        <div class="avatar large">AB</div>
+        <h3>Alex Brown</h3>
+        <p class="muted">Music • Coding • Football</p>
+        <div class="swipe-actions">
+          <button id="dislike" class="btn ghost">Nope</button>
+          <button id="like" class="btn primary">Like</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer><p>© 2025 Campus Connect</p></footer>
+
+  <script src="firebase.js"></script>
+  <script>
+    // Simple client-side demo behavior (no real matching logic)
+    document.getElementById('like').addEventListener('click', () => {
+      alert('You liked Alex — in a real app this sends a match request.');
+    });
+    document.getElementById('dislike').addEventListener('click', () => {
+      alert('You passed.');
+    });
+  </script>
+</body>
+</html>

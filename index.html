@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campus Connect</title>
+    <link rel="icon" type="image/x-icon" href="https://via.placeholder.com/16/FFB800/FFFFFF?text=C">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="navbar">
+        <div class="logo">Campus Connect</div>
+        <div class="nav-icons">
+            <button id="messages-btn" title="Messages">✉️</button>
+            <button id="profile-btn" title="My Profile">👤</button>
+        </div>
+    </header>
+
+    <main class="center-page">
+        <div class="swipe-card">
+            <h2>Welcome to Campus Connect!</h2>
+            <p>Swipe left or right to connect with fellow students.</p>
+        </div>
+    </main>
+
+    <footer>
+        <p>© 2025 Campus Connect</p>
+    </footer>
+
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+    <script src="firebase.js"></script>
+
+    <script>
+        window.addEventListener('DOMContentLoaded', async () => {
+            const user = await getCurrentUser();
+            if (!user) {
+                window.location.href = 'login.html';
+            }
+        });
+
+        document.getElementById('messages-btn').addEventListener('click', () => {
+            window.location.href = 'chat.html';
+        });
+        document.getElementById('profile-btn').addEventListener('click', () => {
+            window.location.href = 'profile.html';
+        });
+    </script>
+</body>
+</html>

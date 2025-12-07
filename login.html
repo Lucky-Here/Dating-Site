@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Sign In — Campus Connect</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="logo">Campus Connect</div>
+    <div class="nav-right">
+      <a href="index.html" class="btn link">Home</a>
+    </div>
+  </nav>
+
+  <main class="center-page">
+    <div class="auth-card">
+      <h2>Welcome back 👋</h2>
+      <p class="muted">Sign in to your Campus Connect account.</p>
+      <form id="loginForm">
+        <input id="loginEmail" type="email" placeholder="Email address" required>
+        <input id="loginPassword" type="password" placeholder="Password" required>
+        <button id="loginBtn" type="button" class="join-submit">Sign in</button>
+      </form>
+      <p class="small">New here? <a href="index.html#join">Create an account</a></p>
+    </div>
+  </main>
+
+  <footer>
+    <p>© 2025 Campus Connect</p>
+  </footer>
+
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+  <script src="firebase.js"></script>
+  <script>
+    document.getElementById('loginBtn').addEventListener('click', async () => {
+      const email = document.getElementById('loginEmail').value.trim();
+      const password = document.getElementById('loginPassword').value.trim();
+      if (!email || !password) { alert('Enter both fields'); return; }
+      try {
+        await signIn({ email, password });
+        window.location.href = 'profile.html';
+      } catch (err) {
+        console.error(err);
+        alert('Sign in failed: ' + err.message);
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Profile — Campus Connect</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="logo">Campus Connect</div>
+    <div class="nav-right">
+      <a href="index.html" class="btn link">Home</a>
+      <button id="signOutBtn" class="btn link">Sign out</button>
+    </div>
+  </nav>
+
+  <main class="center-page">
+    <div class="profile-card">
+      <div id="profileAvatar" class="avatar">VC</div>
+      <h2 id="profileName">Your Name</h2>
+      <p id="profileEmail" class="muted">you@example.com</p>
+      <p id="profileInterests">Interests: —</p>
+      <div class="profile-actions">
+        <a href="swipe.html" class="btn primary">Find Matches</a>
+        <a href="chat.html" class="btn">Open Chat</a>
+      </div>
+    </div>
+  </main>
+
+  <footer><p>© 2025 Campus Connect</p></footer>
+
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+  <script src="firebase.js"></script>
+  <script>
+    // Example scaffold: load signed in user's profile from Firestore
+    async function loadProfile() {
+      try {
+        const user = await getCurrentUser(); // defined in firebase.js
+        if (!user) { window.location.href = 'login.html'; return; }
+        const profile = await fetchProfile(user.uid);
+        if (profile) {
+          document.getElementById('profileName').textContent = profile.name || 'Your Name';
+          document.getElementById('profileEmail').textContent = profile.email || user.email;
+          document.getElementById('profileInterests').textContent = 'Interests: ' + (profile.interests || '—');
+        }
+      } catch (err) {
+        console.error(err);
+      }
+    }
+    document.getElementById('signOutBtn').addEventListener('click', async () => {
+      await signOut();
+      window.location.href = 'index.html';
+    });
+    loadProfile();
+  </script>
+</body>
+</html>
